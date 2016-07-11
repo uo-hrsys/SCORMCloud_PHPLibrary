@@ -171,7 +171,9 @@ class CourseService{
 		}
 		$request->setMethodParams($params);
         $response = $request->CallService("rustici.course.deleteCourse");
-		return $response;
+		$xml = simplexml_load_string($response);
+        write_log($xml->result);
+        return ($xml->result == 'true');
     }
     
     /// <summary>
