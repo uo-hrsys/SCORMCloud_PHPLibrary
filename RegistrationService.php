@@ -102,7 +102,11 @@ class RegistrationService{
 			
 			$request->setMethodParams($params);
 			
-            return $request->CallService("rustici.registration.createRegistration");
+            $response = $request->CallService("rustici.registration.createRegistration");
+
+            $xml = simplexml_load_string($response);
+            write_log($xml->result);
+            return ($xml->result == 'true');
         }
 
         public function Exists($registrationId) {

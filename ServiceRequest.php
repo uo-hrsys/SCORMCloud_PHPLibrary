@@ -176,8 +176,8 @@ class ServiceRequest{
 				}else{
 					$errmsg = "Invalid XML Response from web service call, expected <rsp> tag, instead received: ".$xmlString;
 				}
-				error_log($errmsg);
-				throw new Exception($errmsg);
+				//error_log($errmsg);
+				throw new Exception($errmsg, (int)$rspElements->err["code"]);
 			}
 
             return $xmlString;
